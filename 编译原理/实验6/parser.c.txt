@@ -1,0 +1,26 @@
+#include "common.h"
+#include <math.h>
+// R->BR | ε   select(R->BR)={'0','1'}; select(R-> ε) ={'.','\n'} 
+b_info parseR(int v, int l){
+   b_info R,R1;
+	int B;
+	switch(lookahead) {
+		case '.':
+			R.val = 0;
+			R.len = 0;
+			break;
+		case '\n':
+    		matchToken('\n');  
+			R.val = 0;
+			R.len = 0;
+			break;
+		case '0':
+		case '1':
+			B = parseB();
+			R1 = parseR(v,l + 1);
+			R.val = (B << R1.len )+ R1.val;
+			R.len = R1.len + 1;
+			break;
+	}
+	return R;
+}

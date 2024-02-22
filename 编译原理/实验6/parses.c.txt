@@ -1,0 +1,35 @@
+#include "common.h"
+
+// S->BR  select(S->BR) = {'0','1'}
+b_info parseS(){
+   	b_info S,R;
+	int B;
+    /*
+	switch(lookahead) {
+		case '0':
+		case '1':
+			B = parseB();
+			R = parseR(0,0);
+			S.val = (B << R.len) + R.val;
+			S.len = R.len + 1;
+			break;
+		default:
+			S.val = 0;
+			S.len = 0;
+			break;
+	}
+	return S;*/
+
+    if(lookahead=='0'){}
+    else if(lookahead=='1'){
+            B = parseB();
+			R = parseR(0,0);
+			S.val = (B << R.len) + R.val;
+			S.len = R.len + 1;
+    }
+    else{
+        S.val = 0;
+		S.len = 0;
+    }
+    return S;
+}
